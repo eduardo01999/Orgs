@@ -1,4 +1,4 @@
-package com.example.orgs.ui.recyclerview.adapter
+package br.com.alura.orgs.ui.recyclerview.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.orgs.R
-import com.example.orgs.model.Produto
+import br.com.alura.orgs.R
+import br.com.alura.orgs.model.Produto
 
 class ListaProdutosAdapter(
         private val context: Context,
@@ -26,6 +26,7 @@ class ListaProdutosAdapter(
             val valor = itemView.findViewById<TextView>(R.id.produto_item_valor)
             valor.text = produto.valor.toPlainString()
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

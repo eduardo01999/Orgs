@@ -1,4 +1,4 @@
-package com.example.orgs
+package br.com.alura.orgs
 
 import org.junit.Test
 

@@ -1,10 +1,10 @@
-package com.example.orgs.dao
+package br.com.alura.orgs.dao
 
-import com.example.orgs.model.Produto
+import br.com.alura.orgs.model.Produto
 
 class ProdutosDao {
 
-    fun adiciona(produto: Produto) {
+    fun adiciona(produto: Produto){
         produtos.add(produto)
     }
 

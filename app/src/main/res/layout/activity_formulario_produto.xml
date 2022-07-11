@@ -42,8 +42,7 @@
             app:layout_constraintStart_toStartOf="@id/activity_formulario_produto_descricao"
             app:layout_constraintTop_toBottomOf="@id/activity_formulario_produto_descricao" />
 
-        <Button
-            android:id="@+id/activity_formulario_produto_botao_salvar"
+        <Button android:id="@+id/activity_formulario_produto_botao_salvar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"

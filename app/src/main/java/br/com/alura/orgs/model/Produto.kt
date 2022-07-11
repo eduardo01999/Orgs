@@ -1,4 +1,4 @@
-package com.example.orgs.model
+package br.com.alura.orgs.model
 
 import java.math.BigDecimal
 
