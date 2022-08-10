@@ -17,10 +17,11 @@ class ProdutosDao {
         private val produtos = mutableListOf<Produto>(
             Produto(
                 nome = "Salada de frutas",
-                descricao = "Larajanta, maçãs e uva",
-                valor = BigDecimal("19.98")
+                descricao = "Laranja, maçãs e uva",
+                valor = BigDecimal("19.83")
+            ),
+
             )
-        )
     }
 
 }
