@@ -1,7 +1,6 @@
 package br.com.alura.orgs.ui.dialog
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import br.com.alura.orgs.databinding.FormularioImagemBinding
@@ -11,10 +10,11 @@ class FormularioImagemDialog(private val context: Context) {
 
     fun mostra(
         urlPadrao: String? = null,
-        quandoImagemCarregada: (imagem: String) -> Unit
-    ) {
+        quandoImagemCarragada: (imagem: String) -> Unit
+    )  {
         FormularioImagemBinding
             .inflate(LayoutInflater.from(context)).apply {
+
                 urlPadrao?.let {
                     formularioImagemImageview.tentaCarregarImagem(it)
                     formularioImagemUrl.setText(it)
@@ -29,13 +29,17 @@ class FormularioImagemDialog(private val context: Context) {
                     .setView(root)
                     .setPositiveButton("Confirmar") { _, _ ->
                         val url = formularioImagemUrl.text.toString()
-                        quandoImagemCarregada(url)
+                        quandoImagemCarragada(url)
                     }
                     .setNegativeButton("Cancelar") { _, _ ->
 
                     }
                     .show()
             }
+
+
+
+
     }
 
 }
