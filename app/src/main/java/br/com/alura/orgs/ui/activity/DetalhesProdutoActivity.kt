@@ -6,12 +6,20 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.lifecycleScope
 import br.com.alura.orgs.R
 import br.com.alura.orgs.database.AppDatabase
 import br.com.alura.orgs.databinding.ActivityDetalhesProdutoBinding
 import br.com.alura.orgs.extensions.formataParaMoedaBrasileira
 import br.com.alura.orgs.extensions.tentaCarregarImagem
 import br.com.alura.orgs.model.Produto
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.collect
 
 class DetalhesProdutoActivity : AppCompatActivity() {
 
@@ -23,6 +31,8 @@ class DetalhesProdutoActivity : AppCompatActivity() {
     private val produtoDao by lazy {
         AppDatabase.instancia(this).produtoDao()
     }
+
+    private val scope = CoroutineScope(IO)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +46,14 @@ class DetalhesProdutoActivity : AppCompatActivity() {
     }
 
     private fun buscaProduto() {
-        produto = produtoDao.buscaPorId(produtoId)
-        produto?.let {
-            preencheCampos(it)
-        } ?: finish()
+        lifecycleScope.launch {
+            produtoDao.buscaPorId(produtoId).collect { produtoEncontrado ->
+                produto = produtoEncontrado
+                produto?.let {
+                    preencheCampos(it)
+                } ?: finish()
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -50,8 +64,10 @@ class DetalhesProdutoActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_detalhes_produto_remover -> {
-                produto?.let { produtoDao.remove(it) }
-                finish()
+                lifecycleScope.launch {
+                    produto?.let { produtoDao.remove(it) }
+                    finish()
+                }
             }
             R.id.menu_detalhes_produto_editar -> {
                 Intent(this, FormularioProdutoActivity::class.java).apply {
