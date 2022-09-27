@@ -1,6 +1,7 @@
 package br.com.alura.orgs.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import br.com.alura.orgs.database.AppDatabase
@@ -60,6 +61,7 @@ class FormularioProdutoActivity : AppCompatActivity() {
                 produto?.let {
                     title = "Alterar produto"
                     preencheCampos(it)
+                    Log.i("teste","teste")
                 }
             }
         }
